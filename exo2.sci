@@ -1,7 +1,11 @@
-function exo2 (n,e)
+
+
+function exo2 (data,e)
     
     format("e",e)
     
+ for n= data   
+    i=n/10;
     A = rand(n,n)
     disp("A=",A)
     
@@ -15,17 +19,26 @@ function exo2 (n,e)
     disp("x=",x)
     
    
-    flerlres = norm(x-xex)/norm(xex)
-    disp("flerlres=",flerlres)
-    brelres = norm(b-A*x)/norm(b)
-    disp("brelres=",brelres)
-    
-    con =cond(A)
-    disp("cond=",con)
-    
-    borne = cond(A)*brelres
-    disp("borne=",borne)
+    flerlres(i) = norm(x-xex)/norm(xex)
+    //disp("flerlres=",flerlres)
 
+    brelres(i) = norm(b-A*x)/norm(b)
+    //disp("brelres=",brelres)
+    
+    con(i) =cond(A)
+    //disp("cond=",con)
+    
+    borne(i) = con(i)*brelres(i)
+ //   disp("borne=",borne(i)
+end
+
+
+
+plot(data,log(flerlres),"r");
+//plot(data,log(brelres),"b");
+plot(data,log(borne),"g");
+
+hl=legend(['flerlres';'borne']);
   
     
 endfunction
