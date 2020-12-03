@@ -3,11 +3,11 @@ function [L,U] = mylu3b(A)
     n=size(A,1);
     q=size(1,n);
     
-    row = [1,n];
+    row = [1:n];
     
     for k=1:n-1
         [piv,ind]=max(abs(A(k:n,k)));
-        ind = k-1 +ind;
+        ind = k-1+ind;
         q(1,k)=row(1,ind);
         
         if(ind~=k)
@@ -27,8 +27,8 @@ function [L,U] = mylu3b(A)
             for j=k+1:n
                 A(i,j)=A(i,j)-A(i,k)+A(k,j);
     end
-end
-end
+    end
+    end
         Idn=speye(n,n);
         P=Idn(row,:);
         L=tril(A,-1)-speye(n,n);
